@@ -11,7 +11,8 @@ namespace Shafikov41Size
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,8 +32,9 @@ namespace Shafikov41Size
         public Nullable<int> ProductCount { get; set; }
         public string ProductDescription { get; set; }
         public string ProductPhoto { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
+
     }
 }

@@ -33,6 +33,8 @@ namespace Shafikov41Size
             var currentProduct = Shafikov41SizeEntities.GetContext().Product.ToList();
             ProductListView.ItemsSource = currentProduct;
 
+            ProdAll.Text = Convert.ToString(currentProduct.Count);
+
             CostComboBox.SelectedIndex = 0;
             DiscntComboBox.SelectedIndex = 0;
 
@@ -74,22 +76,24 @@ namespace Shafikov41Size
             }
             else if(DiscntComboBox.SelectedIndex == 1)
             {
-                currentProduct = currentProduct.Where(p => (p.ProductMaxDiscount >= 0 && p.ProductMaxDiscount < 10)).ToList();
+                currentProduct = currentProduct.Where(p => (p.ProductDiscountAmount >= 0 && p.ProductDiscountAmount < 10)).ToList();
             }
             else if (DiscntComboBox.SelectedIndex == 2)
             {
-                currentProduct = currentProduct.Where(p => (p.ProductMaxDiscount >= 10 && p.ProductMaxDiscount < 15)).ToList();
+                currentProduct = currentProduct.Where(p => (p.ProductDiscountAmount >= 10 && p.ProductDiscountAmount < 15)).ToList();
             }
             else if (DiscntComboBox.SelectedIndex == 3)
             {
-                currentProduct = currentProduct.Where(p => (p.ProductMaxDiscount >= 15)).ToList();
+                currentProduct = currentProduct.Where(p => (p.ProductDiscountAmount >= 15)).ToList();
             }         
+
+            ProdAtTheMoment.Text = Convert.ToString(currentProduct.Count);
 
             ProductListView.ItemsSource = currentProduct;
 
             TableList = currentProduct;
 
-            ChangePage(0, 0);
+            //ChangePage(0, 0);
         }
 
         private void DiscntComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,7 +101,7 @@ namespace Shafikov41Size
             UpdateProduct();
         }
 
-        private void LeftSlideBtn_Click(object sender, RoutedEventArgs e)
+        /*private void LeftSlideBtn_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(1, null);
         }
@@ -200,5 +204,6 @@ namespace Shafikov41Size
         {
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
         }
+        */
     }
 }

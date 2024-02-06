@@ -24,15 +24,22 @@
                 <TextBlock> По убыванию </TextBlock>
             </ComboBox>
 
-            <ComboBox Name="DiscntComboBox" Width="170" FontSize="16" Margin="5" SelectionChanged="DiscntComboBox_SelectionChanged">
-                <TextBlock> По скидке </TextBlock>
-                <TextBlock> от 0 до 10% </TextBlock>
-                <TextBlock> от 10 до 15%</TextBlock>
+            <ComboBox Name="DiscntComboBox" Width="250" FontSize="16" Margin="5" SelectionChanged="DiscntComboBox_SelectionChanged">
+                <TextBlock> По скидке (Все диапазоны)</TextBlock>
+                <TextBlock> от 0 до 9,99%</TextBlock>
+                <TextBlock> от 10 до 14,99%</TextBlock>
                 <TextBlock> от 15%</TextBlock>
             </ComboBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            <TextBlock Text="Количество:" FontSize="18" Margin="5"></TextBlock>
+            <TextBlock Name="ProdAtTheMoment" Text="" Margin="5" FontSize="18"></TextBlock>
+            <TextBlock Text="из" FontSize="18" Margin="5"></TextBlock>
+            <TextBlock Name="ProdAll" Text="" Margin="5" FontSize="18"></TextBlock>
+        </StackPanel>
+
+        <!--<StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
             <TextBlock Name="TBCount" FontSize="18" Height="20"></TextBlock>
             <TextBlock Name="TBAllRecords" FontSize="18" Height="20"></TextBlock>
             <Button Name="LeftSlideBtn" Width="40" FontSize="20" Content="&lt;" Click="LeftSlideBtn_Click"></Button>
@@ -44,7 +51,7 @@
                 </ListBox.ItemsPanel>
             </ListBox>
             <Button Name="RightSlideBtn" Width="40" FontSize="20" Content="&gt;" Click="RightSlideBtn_Click"></Button>
-        </StackPanel>
+        </StackPanel>-->
 
         <ListView Name="ProductListView" Grid.Row="2">
             <ListView.ItemTemplate>
@@ -75,7 +82,7 @@
                             </Image.Source>
                         </Image>
 
-                        <TextBlock Text="{Binding ProductName}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="5" FontSize="20"></TextBlock>
+                        <TextBlock Text="{Binding ProductName}" Grid.Column="1" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Left" Margin="5" FontSize="20"></TextBlock>
                         <TextBlock Text="{Binding ProductDescription}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="5" FontSize="20"></TextBlock>
                         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
                             <TextBlock Text="Производитель: " Grid.Column="1" Grid.Row="2" FontSize="20" Margin="5" TextWrapping="Wrap"></TextBlock>
@@ -83,13 +90,13 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal">
                             <TextBlock Text="Цена: " FontSize="20" Margin="5" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding ProductCost}" Margin="5" FontSize="20"></TextBlock>
-                            <TextBlock Text=" руб." FontSize="20" Margin="5" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding ProductCost, StringFormat={}{0:0} рублей}" Margin="5" FontSize="20"></TextBlock>
+                            <!--<TextBlock Text=" руб." FontSize="20" Margin="5" TextWrapping="Wrap"></TextBlock>-->
                         </StackPanel>
                         <TextBlock Text="Скидка: " Grid.Column="2" Grid.Row="0" FontSize="20" Margin="5"></TextBlock>
                         <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal">
-                            <TextBlock Text="{Binding ProductMaxDiscount}" Margin="5" FontSize="20"></TextBlock>
-                            <TextBlock Text="%" FontSize="20" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding ProductDiscountAmount}" FontWeight="Bold" Margin="5" FontSize="20"></TextBlock>
+                            <TextBlock Text="%" FontSize="20" FontWeight="Bold" Margin="5"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
