@@ -26,9 +26,31 @@ namespace Shafikov41Size
 
         List<Product> CurrentPageList = new List<Product>();
         List<Product> TableList;
-        public ProductPage()
+        public ProductPage(User user)
         {
             InitializeComponent();
+
+            if (user != null)
+            {
+                FIOTB.Text = user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
+
+                switch (user.UserRole)
+                {
+                    case 1:
+                        RoleTB.Text = "Клиент"; break;
+                    case 2:
+                        RoleTB.Text = "Менеджер"; break;
+                    case 3:
+                        RoleTB.Text = "Администратор"; break;
+                }
+            }
+            else
+            {
+                FIOTB.Text = "гость";
+                RoleTB.Text = "Гость";
+            }
+
+           
 
             var currentProduct = Shafikov41SizeEntities.GetContext().Product.ToList();
             ProductListView.ItemsSource = currentProduct;
@@ -99,6 +121,16 @@ namespace Shafikov41Size
         private void DiscntComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateProduct();
+        }
+
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         /*private void LeftSlideBtn_Click(object sender, RoutedEventArgs e)
